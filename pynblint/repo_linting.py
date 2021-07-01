@@ -49,3 +49,10 @@ def get_untitled_notebooks(repo):
         if not nb_linting.is_titled(notebook):
             untitled_notebooks.append(notebook.path)
     return untitled_notebooks
+
+
+def are_dependencies_declared(repo):
+    if repo.dependencies_files is not None:
+        return True
+    else:
+        return False
