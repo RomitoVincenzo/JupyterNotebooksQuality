@@ -61,6 +61,7 @@ class Notebook:
                 "bottomEmptyCells": nb_linting.count_bottom_empty_cells(self, bottom_size),
                 "isTitled": nb_linting.is_titled(self),
                 "isFilenameCharsetRestricted": nb_linting.is_filename_charset_restricted(self),
+                "isNotCopied": nb_linting.is_not_copy(self)
             }
         }
         if filename_max_length is not None:

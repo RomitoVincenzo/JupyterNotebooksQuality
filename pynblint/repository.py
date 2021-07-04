@@ -54,12 +54,14 @@ class Repository:
             name = os.path.basename(self.path)
         duplicate_paths = repo_linting.get_duplicate_notebooks(self)
         untitled_paths = repo_linting.get_untitled_notebooks(self)
+        copied_notebooks = repo_linting.get_copied_notebooks(self)
         return {
             "repositoryName": name,
             "lintingResults":
                 {
                     "duplicateFilenames": duplicate_paths,
-                    "untitledNotebooks": untitled_paths
+                    "untitledNotebooks": untitled_paths,
+                    "copiedNotebooks": copied_notebooks
                 }
         }
 

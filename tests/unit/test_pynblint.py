@@ -14,11 +14,13 @@ def notebooks():
     nb2 = Notebook(Path("../fixtures", "FullNotebookFullNotebookFullNotebook.ipynb"))
     nb3 = Notebook(Path("../fixtures", "acs,.-e+.ipynb"))
     nb4 = Notebook(Path("../fixtures", "Untitled.ipynb"))
+    nb5 = Notebook(Path("../fixtures", "FullNotebook2-Copy1.ipynb"))
     return {
         "FullNotebook2.ipynb": nb1,
         "FullNotebookFullNotebookFullNotebook.ipynb": nb2,
         "acs,.-e+.ipynb": nb3,
-        "Untitled.ipynb": nb4
+        "Untitled.ipynb": nb4,
+        "FullNotebook2-Copy1.ipynb": nb5
     }
 
 
@@ -192,3 +194,19 @@ def test_get_duplicate_notebooks(test_input, expected, repos):
 ])
 def test_get_untitled_notebooks(test_input, expected, repos):
     assert repo_linting.get_untitled_notebooks(repos[test_input]) == expected
+
+
+@pytest.mark.parametrize("test_input,expected", [
+    ("FullNotebook2.ipynb", True),
+    ("FullNotebook2-Copy1.ipynb", False)
+])
+def test_is_not_copy(test_input, expected, notebooks):
+    assert nb_linting.is_not_copy(notebooks[test_input]) == expected
+
+
+@pytest.mark.parametrize("test_input,expected", [
+    ("DuplicatesNoUntitled", [Path("../fixtures", "test_repo", "DuplicatesNoUntitled", "Test-Copy1.ipynb")]),
+    ("UntitledNoDuplicates", [])
+])
+def test_get_copied_notebooks(test_input, expected, repos):
+    assert repo_linting.get_copied_notebooks(repos[test_input]) == expected

@@ -452,6 +452,25 @@ def is_titled(notebook):
         return True
 
 
+def is_not_copy(notebook):
+    """
+    The function takes a notebook and checks whether it is a copy of another notebook: "notebook-Copy1.ipynb"
+    Args:
+        notebook(Notebook): python object representing the notebook
+
+    Returns:
+        boolean: False if the name of the notebook end in "-Copy<n>.ipynb", True otherwise
+
+    A way you might use me is
+
+    copy = is_not_copy(notebook)
+    """
+    if "-Copy" not in os.path.basename(notebook.path):
+        return True
+    else:
+        return False
+
+
 def is_filename_charset_restricted(notebook):
     """
     The function takes a notebook and checks whether it has a title in the [A-Za-z0-9_.-] charset
