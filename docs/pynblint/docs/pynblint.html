@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pynblint package &#8212; pynblint 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pynblint 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pynblint package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pynblint-package">
+<h1>pynblint package<a class="headerlink" href="#pynblint-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-pynblint.nb_linting">
+<span id="pynblint-nb-linting-module"></span><h2>pynblint.nb_linting module<a class="headerlink" href="#module-pynblint.nb_linting" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.are_imports_in_first_cell">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">are_imports_in_first_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.are_imports_in_first_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies if there are no import statements in cells that are not the first one</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if all the import are in the first cell of code, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>all_imports_in_first_cell = are_imports_in_first_cell(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_bottom_empty_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_bottom_empty_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_bottom_empty_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of empty cells between the last bottom-size-cells of the notebook</p>
+<p>Precondition:In order for the bottom of the notebook to actually represent the last section of it, it should
+not be more then the 33.3% of the whole notebook. In other words, the bottom_size should be minor then the
+dimension of the notebook divided by 3.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p></li>
+<li><p><strong>bottom_size</strong> (<em>int</em>) – number of cells starting from the bottom of the dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of empty cells in the bottom-size last section of the notebook, None in case the precondition is not satisfied</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>bottom_empty_cells = count_bottom_empty_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_bottom_non_executed_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_bottom_non_executed_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_bottom_non_executed_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of non-executed cells between the last bottom-size-cells of the notebook</p>
+<p>Precondition: In order for the bottom of the notebook to actually represent the last section of it, it should
+not be more then the 33.3% of the whole notebook. In other words, the bottom_size should be minor then the
+dimension of the notebook divided by 3.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p></li>
+<li><p><strong>bottom_size</strong> (<em>int</em>) – number of cells starting from the bottom of the dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of non-executed cells in the bottom-size last section of the notebook, None in case the precondition is not satisfied</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>bottom_non_executed_cells = count_bottom_non_executed_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and returns the number of cells</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value representing the number of cells into the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>cells_count = count_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_class_defs">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_class_defs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_class_defs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the number of class definitions from a notebook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of class definitions in the python code</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>class_def_count = count_class_defs(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_code_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_code_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_code_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and returns the number of code cells</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of code cells into the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>code_cell_count = count_code_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_empty_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_empty_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_empty_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of empty cells from a notebook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of empty cells in the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>empty_cells_count = count_empty_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_func_defs">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_func_defs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_func_defs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts the number of function definitions from a notebook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of function definitions in the code</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>function_defs_count = count_func_defs(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_md_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_md_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_md_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and returns the number of markdown cells</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of markdown cells into the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>md_cells_count = count_md_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_md_lines">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_md_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_md_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of markdown rows from a notebook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of markdown rows in the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>md_lines_count = count_md_lines(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_md_titles">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_md_titles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_md_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of markdown title rows from a notebook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of markdown title rows in the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>titles_count = count_md_titles(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_non_executed_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_non_executed_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_non_executed_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of non-executed cells from a notebook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of non-executed cells in the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>non-exec_cells_count = count_non_executed_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.count_raw_cells">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">count_raw_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.count_raw_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and returns the number of raw cells</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of raw cells into the notebook</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>raw_cells_count = count_raw_cells(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.get_bottom_md_lines_ratio">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">get_bottom_md_lines_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.get_bottom_md_lines_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Percentage of markdown rows in the last cells of the notebook out of the total of md rows</p>
+<p>Precondition: In order for the bottom of the notebook to actually represent the last section of it, it should
+not be more then the 33.3% of the whole notebook. In other words, the bottom_size should be minor then the
+dimension of the notebook divided by 3.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Percentage of markdown rows in the last cells of the notebook, None in case the precondition is not satisfied</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>last_ten_cells_md_ratio = get_bottom_md_lines_ratio(nb, 10)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.has_linear_execution_order">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">has_linear_execution_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.has_linear_execution_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and returns True if the cells are executed in
+sequential order,starting from 1, and False otherwise</p>
+<p>Verifies if the notebook has been run in sequential order, starting from 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if notebook cells have been sequentially run top to bottom</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>linear_exec_order = has_linear_execution_order(nb)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.is_filename_charset_restricted">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">is_filename_charset_restricted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.is_filename_charset_restricted" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and checks whether it has a title in the suggested charset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the name of the notebook is withing the charset, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>restricted_filename = is_filename_charset_restricted(notebook)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.is_filename_short">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">is_filename_short</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_max_length</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.is_filename_short" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and checks whether it has a short title</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename_max_length</strong> (<em>int</em>) – threshold length under which the notebook filename is considered “short”</p></li>
+<li><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the name of the notebook is &gt; than filename_max_length, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>short_filename = is_filename_short(notebook)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.nb_linting.is_titled">
+<span class="sig-prename descclassname"><span class="pre">pynblint.nb_linting.</span></span><span class="sig-name descname"><span class="pre">is_titled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.nb_linting.is_titled" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a notebook and checks whether it has been titled or it still has the default title: “Untitled.ipynb”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notebook</strong> (<a class="reference internal" href="#pynblint.notebook.Notebook" title="pynblint.notebook.Notebook"><em>Notebook</em></a>) – python object representing the notebook</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>False if the name of the notebook is Untitled, True otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p class="rubric">Example</p>
+<p>untitled = is_titled(notebook)</p>
+</dd></dl>
+
+</section>
+<section id="module-pynblint.notebook">
+<span id="pynblint-notebook-module"></span><h2>pynblint.notebook module<a class="headerlink" href="#module-pynblint.notebook" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynblint.notebook.Notebook">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pynblint.notebook.</span></span><span class="sig-name descname"><span class="pre">Notebook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notebook_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repository_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notebook_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.notebook.Notebook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class stores the representations of a notebook
+on which pynblint functions are called</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynblint.notebook.Notebook.get_pynblint_results">
+<span class="sig-name descname"><span class="pre">get_pynblint_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bottom_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_max_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.notebook.Notebook.get_pynblint_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pynblint.repo_linting">
+<span id="pynblint-repo-linting-module"></span><h2>pynblint.repo_linting module<a class="headerlink" href="#module-pynblint.repo_linting" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.repo_linting.get_duplicate_notebooks">
+<span class="sig-prename descclassname"><span class="pre">pynblint.repo_linting.</span></span><span class="sig-name descname"><span class="pre">get_duplicate_notebooks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.repo_linting.get_duplicate_notebooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a repository and checks whether two or more notebooks with the same filename are present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>repo</strong> (<a class="reference internal" href="#pynblint.repository.Repository" title="pynblint.repository.Repository"><em>Repository</em></a>) – python object representing the repository</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>paths to notebooks with duplicate filenames</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p>duplicate_nb_in_repo = get_duplicate_notebooks(repo)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynblint.repo_linting.get_untitled_notebooks">
+<span class="sig-prename descclassname"><span class="pre">pynblint.repo_linting.</span></span><span class="sig-name descname"><span class="pre">get_untitled_notebooks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.repo_linting.get_untitled_notebooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function takes a repository and checks whether there is any untitled notebook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>repo</strong> (<a class="reference internal" href="#pynblint.repository.Repository" title="pynblint.repository.Repository"><em>Repository</em></a>) – python object representing the repository</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>paths to untitled notebooks</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List</p>
+</dd>
+</dl>
+<p>A way you might use me is</p>
+<p>untitled_nb_in_repo = get_untitled_notebooks(repo)</p>
+</dd></dl>
+
+</section>
+<section id="module-pynblint.repository">
+<span id="pynblint-repository-module"></span><h2>pynblint.repository module<a class="headerlink" href="#module-pynblint.repository" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynblint.repository.GitHubRepository">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pynblint.repository.</span></span><span class="sig-name descname"><span class="pre">GitHubRepository</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">github_url</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.repository.GitHubRepository" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynblint.repository.Repository" title="pynblint.repository.Repository"><code class="xref py py-class docutils literal notranslate"><span class="pre">pynblint.repository.Repository</span></code></a></p>
+<p>This class stores data about a GitHub repository</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynblint.repository.LocalRepository">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pynblint.repository.</span></span><span class="sig-name descname"><span class="pre">LocalRepository</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repository_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.repository.LocalRepository" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynblint.repository.Repository" title="pynblint.repository.Repository"><code class="xref py py-class docutils literal notranslate"><span class="pre">pynblint.repository.Repository</span></code></a></p>
+<p>This class stores data about a local code repository</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynblint.repository.Repository">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pynblint.repository.</span></span><span class="sig-name descname"><span class="pre">Repository</span></span><a class="headerlink" href="#pynblint.repository.Repository" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class stores data about a code repository</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynblint.repository.Repository.get_notebooks_results">
+<span class="sig-name descname"><span class="pre">get_notebooks_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bottom_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_max_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.repository.Repository.get_notebooks_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the list of notebook objects from the current repository and returns a list of dictionaries containing the related
+linting results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynblint.repository.Repository.get_repo_results">
+<span class="sig-name descname"><span class="pre">get_repo_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.repository.Repository.get_repo_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns linting results at the repository level.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynblint.repository.Repository.retrieve_notebooks">
+<span class="sig-name descname"><span class="pre">retrieve_notebooks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pynblint.repository.Repository.retrieve_notebooks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pynblint">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pynblint" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pynblint package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pynblint.nb_linting">pynblint.nb_linting module</a></li>
+<li><a class="reference internal" href="#module-pynblint.notebook">pynblint.notebook module</a></li>
+<li><a class="reference internal" href="#module-pynblint.repo_linting">pynblint.repo_linting module</a></li>
+<li><a class="reference internal" href="#module-pynblint.repository">pynblint.repository module</a></li>
+<li><a class="reference internal" href="#module-pynblint">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/pynblint/docs/pynblint.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pynblint 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pynblint package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Vincenzo Romito.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+pynblint package
+================
+
+Submodules
+----------
+
+pynblint.nb\_linting module
+---------------------------
+
+.. automodule:: pynblint.nb_linting
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pynblint.notebook module
+------------------------
+
+.. automodule:: pynblint.notebook
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pynblint.repo\_linting module
+-----------------------------
+
+.. automodule:: pynblint.repo_linting
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pynblint.repository module
+--------------------------
+
+.. automodule:: pynblint.repository
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pynblint
+   :members:
+   :undoc-members:
+   :show-inheritance:
